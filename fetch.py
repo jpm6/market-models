@@ -47,8 +47,8 @@ def write_current_data():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--sym', type=str, help='the ticker of an SP 500 stock')
-    parser.add_argument('-d', '--data', action='store_true', help='fetch current data all stocks')
+    parser.add_argument('-s', '--sym', type=str, help='print data for given security symbol')
+    parser.add_argument('-d', '--data', action='store_true', help='save current security data to $DATE.csv')
     args = parser.parse_args()
 
     if args.sym: print(*symbol_data(args.sym), sep='\n')

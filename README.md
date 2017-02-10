@@ -24,8 +24,8 @@ usage: fetch.py [-h] [-s SYM] [-d]
 
 optional arguments:
   -h, --help         show this help message and exit
-  -s SYM, --sym SYM  the ticker of an SP 500 stock
-  -d, --data         fetch current data all stocks
+  -s SYM, --sym SYM  print data for given security symbol
+  -d, --data         save current security data to $DATE.csv
 
 ```
 
