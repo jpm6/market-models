@@ -1,39 +1,58 @@
+import argparse
 import csv
 import requests
+import time
 
 from bs4 import BeautifulSoup
 from yahoo_finance import Share
 
-r = requests.get('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
+def sp_symbols():
+    response = requests.get('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
+    soup     = BeautifulSoup(response.text, "html.parser")
+    table    = soup.find('table', {'class': 'wikitable sortable'})
 
-soup = BeautifulSoup(r.text, "html.parser")
+    sp_symbols = []
 
-table = soup.find('table', {'class': 'wikitable sortable'})
+    for row in table.findAll('tr'):
+        col = row.findAll('td')
+        if col:
+            sector = str(col[3].string.strip()).lower().replace(' ', '_')
+            symbol = str(col[0].string.strip())      
 
-sp500 = list()
-for row in table.findAll('tr'):
-    col = row.findAll('td')
-    if col:
-        sector = str(col[3].string.strip()).lower().replace(' ', '_')
-        ticker = str(col[0].string.strip())      
-        sp500.append((ticker,sector))
+            sp_symbols.append((symbol,sector))
 
-sp500.sort()
+    return sorted(sp_symbols)
 
-def retrieve(symbol):
+def symbol_data(symbol):
     yfd = None
     while not yfd:
         try:
-            # connect
             yfd = Share(symbol)
         except:
             pass
 
-    return list(zip(*sorted(list(yfd.data_set.items()))))
+    return list(yfd.data_set.items())
 
-with open('data_set.csv', 'w') as csv_file:
-    writer = csv.writer(csv_file)
-    writer.writerow(retrieve('T')[0])
-    for security in sp500:
-        print(security[0])
-        writer.writerow(retrieve(security[0])[1])
+def write_current_data():
+    with open(time.strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
+
+        form = lambda d: list(zip(*sorted(d)))
+
+        writer = csv.writer(csv_file)
+        writer.writerow(form(symbol_data('T')[0]))
+
+        for security in sp_symbols():
+            print(security[0])
+            writer.writerow(form(symbol_data(security[0]))[1])
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--sym', type=str, help='the ticker of an SP 500 stock')
+    parser.add_argument('-d', '--data', action='store_true', help='fetch current data all stocks')
+    args = parser.parse_args()
+
+    if args.sym: print(*symbol_data(args.sym), sep='\n')
+    
+    if args.data:   write_current_data()
+
+
