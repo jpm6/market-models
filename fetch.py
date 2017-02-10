@@ -53,6 +53,4 @@ if __name__ == '__main__':
 
     if args.sym: print(*symbol_data(args.sym), sep='\n')
     
-    if args.data:   write_current_data()
-
-
+    if args.data: write_current_data()
