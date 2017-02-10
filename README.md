@@ -1,9 +1,7 @@
 # 4133 Project
-
 An SVM Classifier trained on S&P 500 financial data.
 
 ## Requirements
-
 The project is written in Python 3.  It uses the following packages:
 
 - [requests](http://docs.python-requests.org/en/master/)
@@ -17,5 +15,17 @@ git clone https://gitlab.com/jpm/4133_Project.git
 ### SSH Clone
 ```
 git clone git@gitlab.com:jpm/4133_Project.git
+```
+
+## Options
+`python fetch.py -h` prints:
+```
+usage: fetch.py [-h] [-s SYM] [-d]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -s SYM, --sym SYM  the ticker of an SP 500 stock
+  -d, --data         fetch current data all stocks
+
 ```
 
