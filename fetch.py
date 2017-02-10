@@ -34,12 +34,12 @@ def symbol_data(symbol):
     return list(yfd.data_set.items())
 
 def write_current_data():
-    with open(time.strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
+    with open('data/' + time.strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
 
         form = lambda d: list(zip(*sorted(d)))
 
         writer = csv.writer(csv_file)
-        writer.writerow(form(symbol_data('T')[0]))
+        writer.writerow(form(symbol_data('T'))[0])
 
         for security in sp_symbols():
             print(security[0])
