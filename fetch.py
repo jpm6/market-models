@@ -31,12 +31,12 @@ def symbol_data(symbol):
         except:
             pass
 
-    return list(yfd.data_set.items())
+    return sorted(list(yfd.data_set.items()))
 
 def write_current_data():
     with open('data/' + time.strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
 
-        form = lambda d: list(zip(*sorted(d)))
+        form = lambda d: list(zip(*d))
 
         writer = csv.writer(csv_file)
         writer.writerow(form(symbol_data('T'))[0])
