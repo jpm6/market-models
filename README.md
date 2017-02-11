@@ -25,7 +25,7 @@ usage: fetch.py [-h] [-s SYM] [-d]
 optional arguments:
   -h, --help         show this help message and exit
   -d, --data         save current company data to $DATE.csv
-  -l, --lst          list S&P Companies with sectors
+  -l, --list         list S&P Companies with sectors
   -s SYM, --sym SYM  print data for given security symbol
 
 ```

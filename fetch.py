@@ -49,10 +49,10 @@ def write_current_data():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--data', action='store_true', help='save current company data to $DATE.csv')
-    parser.add_argument('-l', '--lst', action='store_true', help='list S&P Companies with sectors')
+    parser.add_argument('-l', '--list', action='store_true', help='list S&P Companies with sectors')
     parser.add_argument('-s', '--sym', type=str, help='print data for given security symbol')
     args = parser.parse_args()
 
     if args.data: write_current_data()
-    if args.lst: print(*sp_symbols(), sep='\n')
-    if args.sym: print(*symbol_data(args.sym), sep='\n')
+    if args.list: print(*sp_symbols(), sep='\n')
+    if args.sym : print(*symbol_data(args.sym), sep='\n')
