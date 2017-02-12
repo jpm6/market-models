@@ -20,7 +20,7 @@ The project is written in Python 3.  It uses the following packages:
 ## Options
 `python fetch.py -h` prints:
 ```
-usage: fetch.py [-h] [-s SYM] [-d]
+usage: fetch.py [-h] [-d] [-l] [-s SYM]
 
 optional arguments:
   -h, --help         show this help message and exit
