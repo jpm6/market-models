@@ -16,7 +16,7 @@ def sp_symbols():
     for row in table.findAll('tr'):
         col = row.findAll('td')
         if col:
-            symbol  = col[0].string 
+            symbol  = col[0].string.replace('.','') 
             name    = col[1].string
             sector  = col[3].string
 
