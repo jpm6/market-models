@@ -37,7 +37,7 @@ def symbol_data(symbol):
 def write_current_data():
     with open('data/' + time.strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
 
-        form = lambda d: list(zip(*d))
+        form = lambda d: list(zip(*clean(d)))
 
         writer = csv.writer(csv_file)
         writer.writerow(form(symbol_data('T'))[0])
@@ -45,6 +45,11 @@ def write_current_data():
         for security in sp_symbols():
             print(security[0])
             writer.writerow(form(symbol_data(security[0]))[1])
+
+def clean(data):
+    f = [line.rstrip('\n') for line in open('filtered_attributes.txt')]
+    return [a for a in data if a[0] not in f]
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
