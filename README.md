@@ -20,13 +20,14 @@ The project is written in Python 3.  It uses the following packages:
 ## Options
 `python fetch.py -h` prints:
 ```
-usage: fetch.py [-h] [-d] [-l] [-s SYM]
+usage: fetch.py [-h] [-d] [-l] [-s SYM] [-S SYM]
 
 optional arguments:
   -h, --help         show this help message and exit
-  -d, --data         save current company data to $DATE.csv
+  -d, --data         save current S&P data to {TODAY}.csv
   -l, --list         list S&P Companies with sectors
-  -s SYM, --sym SYM  print data for given security symbol
+  -s SYM, --sym SYM  print all data for symbol "SYM"
+  -S SYM, --SYM SYM  print filtered data for symbol "SYM"
 
 ```
 
