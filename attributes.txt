@@ -56,6 +56,7 @@ LastTradeTime
 #Name
 OneyrTargetPrice
 Open
+PercentChange
 PreviousClose
 Symbol
 YearLow
