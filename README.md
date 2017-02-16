@@ -1,5 +1,5 @@
 # 4133 Project
-An SVM Classifier trained on S&P 500 financial data.
+Optimizing an SVM to classify attributes of S&P 500 securities.
 
 ### HTTPS Clone
 ```
