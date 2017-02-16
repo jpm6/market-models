@@ -4,6 +4,7 @@ from re             import search
 from time           import strftime
 from yahoo_finance  import Share
 
+
 '''
 Reads and "sp_list.txt" and returns a sorted list of SP 500 Companies in the form:
 
@@ -39,28 +40,26 @@ Returns a sorted list of financial attribute tuples, or an empty list if data mi
 '''
 def clean_data(d):
     exchanges   = {'NMS': 0, 'NYQ': 1}
-    letters     = {'B': 10 ** 9, 'M': 10 ** 6, 'T': 10 ** 12}
+    lets     = {'B': 10 ** 9, 'M': 10 ** 6, 'T': 10 ** 12}
 
     dy = 'DividendYield'
-    eb = 'EBITDA'
     en = 'EPSEstimateNextYear'
-    mc = 'MarketCapitalization'
     op = 'Open'
     pb = 'PriceBook'
-    pc = 'PriceEPSEstimateCurrentYear'
+    pc = 'PreviousClose'
+    pe = 'PriceEPSEstimateCurrentYear'
     pn = 'PriceEPSEstimateNextYear'
-    pe = 'PERatio'
+    pr = 'PERatio'
     se = 'StockExchange'
-    tg = 'OneyrTargetPrice'
+    tp = 'OneyrTargetPrice'
 
-    pa = ['PercentChange',
-          'PercentChangeFromFiftydayMovingAverage',
+    pa = ['PercentChangeFromFiftydayMovingAverage',
           'PercentChangeFromTwoHundreddayMovingAverage',
           'PercentChangeFromYearHigh',
           'PercentChangeFromYearLow' ]
     
-    letter_conv     = lambda d,s: float(d[s][:-1]) * letters[d[s][-1]] 
-    percent_conv    = lambda d,s: float(d[s].strip('%')) / 100
+    let_conv = lambda d,a: float(d[a][:-1]) * lets[d[a][-1]] if search('[A-Z]',d[a]) else d[a] 
+    per_conv = lambda d,a: float(d[a].strip('%')) / 100
 
     # Renaming Attributes
     d['PercentChangeFromYearHigh']  = d.pop('PercebtChangeFromYearHigh')
@@ -68,12 +67,14 @@ def clean_data(d):
     d['.Name']                      = d.pop('Name')
 
     # Creating New Attributes
-    d['OneyrTargetOverCurrent']     = float(d[tg]) / float(d[op]) if d[tg] else 1
-    d['PercentChangeAfterHours']    = float(d[op]) / float(d['PreviousClose']) - 1
+    d['OneyrTargetChange']          = float(d[tp]) / float(d[pc]) - 1 if d[tp] else 0
+    d['PercentChangeAfterHours']    = float(d[op]) / float(d[pc]) - 1 if d[op] else 0
     
     # Letter to Numerals Conversion
-    if search('[A-Z]',d[eb]): d[eb] = letter_conv(d,eb) 
-    if search('[A-Z]',d[mc]): d[mc] = letter_conv(d,mc) 
+    for a in ['EBITDA', 'MarketCapitalization']: d[a] = let_conv(d,a)
+
+    # Percent to Decimal Convertion
+    for a in pa: d[a] = per_conv(d,a)
 
     # Numeric No Dividend Attribute
     d[dy] = d[dy] if d[dy] else 0
@@ -81,14 +82,10 @@ def clean_data(d):
     # Binary Exchanges
     d[se] = exchanges[d[se]] 
 
-    # Percent to Decimal Convertion
-    for a in pa: d[a] = percent_conv(d,a)
+    # Remove Securities with common missing data
+    if not all(d[a] for a in [pb, pe, pn, en, pr]): return []
 
-    # Remove Securities with missing data
-    for a in [eb, pb, pc, pn, en, pe]:
-        if not d[a]: return []
-
-    # Filter Dataset Attributes
+    # Filter Attributes
     for a in [l.rstrip('\n') for l in open('attributes.txt') if '#' not in l]: del d[a]
 
     return sorted(list(d.items()))
