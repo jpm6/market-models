@@ -127,4 +127,4 @@ if __name__ == '__main__':
 
     if args.data: write_current_data()
     if args.list: print(*sp_symbols(), sep='\n')
-    if args.sym : print(*symbol_data(args.sym).items(), sep='\n')
+    if args.sym : print(*sorted(symbol_data(args.sym).items()), sep='\n')
