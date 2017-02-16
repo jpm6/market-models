@@ -35,7 +35,7 @@ def sp_symbols():
 '''
 Takes in a security symbol, ex: 'FDX'
 
-Returns a sorted list of financial attribute tuples, or 'None' if data missing.
+Returns a dictionary of financial attributes.
 '''
 def symbol_data(symbol):
     yfd = None
@@ -45,7 +45,7 @@ def symbol_data(symbol):
         except:
             pass
 
-    return clean_data(yfd.data_set)
+    return yfd.data_set
 
 
 '''
@@ -53,7 +53,7 @@ Takes in a dictionary of a security's financial data.
 
 Converts every attribute to numeric representation and introduces some new attributes.
 
-Returns a sorted list of financial attribute tuples, or 'None' if data missing.
+Returns a sorted list of financial attribute tuples, or an empty list if data missing.
 '''
 def clean_data(d):
     exchanges   = {'NMS': 0, 'NYQ': 1}
@@ -95,7 +95,7 @@ def clean_data(d):
 
     for a in pa: d[a] = percent_conv(d,a)
     for a in [eb, pb, pc, pn, en, pe]:
-        if not d[a]: return None
+        if not d[a]: return []
 
     for a in [l.rstrip('\n') for l in open('attributes.txt') if '#' not in l]: del d[a]
 
@@ -103,20 +103,20 @@ def clean_data(d):
 
 
 '''
-Writes the current financial attributes of all SP 500 companies to $TODAY.csv
+Writes the cleaned current financial attributes of all SP 500 companies to {TODAY}.csv
 '''
 def write_current_data():
     with open('data/' + time.strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
 
-        form = lambda d: list(zip(*d))
+        form = lambda d: list(zip(*clean_data(d)))
 
         writer = csv.writer(csv_file)
         writer.writerow(form(symbol_data('T'))[0])
 
         for security in sp_symbols():
             print(security[0])
-            sd = symbol_data(security[0])
-            if sd: writer.writerow(form(sd)[1])
+            row = form(symbol_data(security[0]))
+            if row: writer.writerow(row[1])
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -127,4 +127,4 @@ if __name__ == '__main__':
 
     if args.data: write_current_data()
     if args.list: print(*sp_symbols(), sep='\n')
-    if args.sym : print(*symbol_data(args.sym), sep='\n')
+    if args.sym : print(*symbol_data(args.sym).items(), sep='\n')
