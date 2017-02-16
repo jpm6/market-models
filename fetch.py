@@ -113,11 +113,13 @@ def write_current_data():
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('-d', '--data', action='store_true', help='save current company data to $DATE.csv')
+    parser.add_argument('-d', '--data', action='store_true', help='save current S&P data to {TODAY}.csv')
     parser.add_argument('-l', '--list', action='store_true', help='list S&P Companies with sectors')
-    parser.add_argument('-s', '--sym', type=str, help='print data for given security symbol')
+    parser.add_argument('-s', '--sym', type=str, help='print all data for symbol "SYM"')
+    parser.add_argument('-S', '--SYM', type=str, help='print filtered data for symbol "SYM"')
     args = parser.parse_args()
 
     if args.data: write_current_data()
     if args.list: print(*sp_symbols(), sep='\n')
     if args.sym : print(*sorted(symbol_data(args.sym).items()), sep='\n')
+    if args.SYM : print(*clean_data(symbol_data(args.SYM)), sep='\n')
