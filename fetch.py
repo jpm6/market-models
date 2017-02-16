@@ -1,35 +1,16 @@
-import argparse
-import csv
-import re
-import requests
-import time
-
-from bs4 import BeautifulSoup
-from yahoo_finance import Share
-
+from argparse       import ArgumentParser
+from csv            import reader, writer
+from re             import search
+from time           import strftime
+from yahoo_finance  import Share
 
 '''
-Returns a sorted list of SP 500 Companies tuples in the form:
+Reads and "sp_list.txt" and returns a sorted list of SP 500 Companies in the form:
 
-    (SYMBOL, NAME, SECTOR)
+    [SYMBOL, NAME, SECTOR]
 '''
 def sp_symbols():
-    response = requests.get('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
-    soup     = BeautifulSoup(response.text, "html.parser")
-    table    = soup.find('table', {'class': 'wikitable sortable'})
-
-    sp_symbols = []
-
-    for row in table.findAll('tr'):
-        col = row.findAll('td')
-        if col:
-            symbol  = col[0].string.replace('.','') 
-            name    = col[1].string
-            sector  = col[3].string
-
-            sp_symbols.append((symbol, name, sector))
-
-    return sorted(sp_symbols)
+    with open('sp_list.txt') as f: return list(reader(f))
 
 
 '''
@@ -49,7 +30,7 @@ def symbol_data(symbol):
 
 
 '''
-Takes in a dictionary of a security's financial data.
+Takes in a dictionary of security financial data.
 
 Converts every attribute to numeric representation and introduces some new attributes.
 
@@ -87,8 +68,8 @@ def clean_data(d):
     d['OneyrTargetOverCurrent'] = float(d[tg]) / float(d[op]) if d[tg] else 1
     d['PercentChangeAfterHours'] = float(d[op]) / float(d['PreviousClose']) - 1
     
-    if re.search('[A-Z]', d[eb]): d[eb] = letter_conv(d,eb) 
-    if re.search('[A-Z]', d[mc]): d[mc] = letter_conv(d,mc) 
+    if search('[A-Z]', d[eb]): d[eb] = letter_conv(d,eb) 
+    if search('[A-Z]', d[mc]): d[mc] = letter_conv(d,mc) 
 
     d[dy] = d[dy] if d[dy] else 0
     d[se] = exchanges[d[se]] 
@@ -106,20 +87,21 @@ def clean_data(d):
 Writes the cleaned current financial attributes of all SP 500 companies to {TODAY}.csv
 '''
 def write_current_data():
-    with open('data/' + time.strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
+    with open('data/' + strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
 
         form = lambda d: list(zip(*clean_data(d)))
 
-        writer = csv.writer(csv_file)
-        writer.writerow(form(symbol_data('T'))[0])
+        w = writer(csv_file)
+        w.writerow(form(symbol_data('T'))[0])
 
         for security in sp_symbols():
             print(security[0])
             row = form(symbol_data(security[0]))
-            if row: writer.writerow(row[1])
+            if row: w.writerow(row[1])
+
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = ArgumentParser()
     parser.add_argument('-d', '--data', action='store_true', help='save current company data to $DATE.csv')
     parser.add_argument('-l', '--list', action='store_true', help='list S&P Companies with sectors')
     parser.add_argument('-s', '--sym', type=str, help='print data for given security symbol')
