@@ -20,6 +20,7 @@ Returns a dictionary of financial attributes.
 '''
 def symbol_data(symbol):
     yfd = None
+    # Call until Yahoo answers
     while not yfd:
         try:
             yfd = Share(symbol)
@@ -61,23 +62,33 @@ def clean_data(d):
     letter_conv     = lambda d,s: float(d[s][:-1]) * letters[d[s][-1]] 
     percent_conv    = lambda d,s: float(d[s].strip('%')) / 100
 
-    d['PercentChangeFromYearHigh'] = d.pop('PercebtChangeFromYearHigh')
-    d['.Symbol'] = d.pop('symbol')
-    d['.Name'] = d.pop('Name')
+    # Renaming Attributes
+    d['PercentChangeFromYearHigh']  = d.pop('PercebtChangeFromYearHigh')
+    d['.Symbol']                    = d.pop('symbol')
+    d['.Name']                      = d.pop('Name')
 
-    d['OneyrTargetOverCurrent'] = float(d[tg]) / float(d[op]) if d[tg] else 1
-    d['PercentChangeAfterHours'] = float(d[op]) / float(d['PreviousClose']) - 1
+    # Creating New Attributes
+    d['OneyrTargetOverCurrent']     = float(d[tg]) / float(d[op]) if d[tg] else 1
+    d['PercentChangeAfterHours']    = float(d[op]) / float(d['PreviousClose']) - 1
     
-    if search('[A-Z]', d[eb]): d[eb] = letter_conv(d,eb) 
-    if search('[A-Z]', d[mc]): d[mc] = letter_conv(d,mc) 
+    # Letter to Numerals Conversion
+    if search('[A-Z]',d[eb]): d[eb] = letter_conv(d,eb) 
+    if search('[A-Z]',d[mc]): d[mc] = letter_conv(d,mc) 
 
+    # Numeric No Dividend Attribute
     d[dy] = d[dy] if d[dy] else 0
+
+    # Binary Exchanges
     d[se] = exchanges[d[se]] 
 
+    # Percent to Decimal Convertion
     for a in pa: d[a] = percent_conv(d,a)
+
+    # Remove Securities with missing data
     for a in [eb, pb, pc, pn, en, pe]:
         if not d[a]: return []
 
+    # Filter Dataset Attributes
     for a in [l.rstrip('\n') for l in open('attributes.txt') if '#' not in l]: del d[a]
 
     return sorted(list(d.items()))
@@ -92,7 +103,7 @@ def write_current_data():
         form = lambda d: list(zip(*clean_data(d)))
 
         w = writer(csv_file)
-        w.writerow(form(symbol_data('T'))[0])
+        w.writerow(form(symbol_data('FDX'))[0])
 
         for security in sp_symbols():
             print(security[0])
