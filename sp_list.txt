@@ -60,7 +60,7 @@ BBY,Best Buy Co. Inc.,Consumer Discretionary
 BCR,Bard (C.R.) Inc.,Health Care
 BDX,Becton Dickinson,Health Care
 BEN,Franklin Resources,Financials
-BFB,Brown-Forman Corporation,Consumer Staples
+BFB,Brown-Forman,Consumer Staples
 BHI,Baker Hughes Inc,Energy
 BIIB,BIOGEN IDEC Inc.,Health Care
 BK,The Bank of New York Mellon Corp.,Financials
@@ -175,7 +175,7 @@ F,Ford Motor,Consumer Discretionary
 FAST,Fastenal Co,Industrials
 FB,Facebook,Information Technology
 FBHS,Fortune Brands Home & Security,Industrials
-FCX,Freeport-McMoran Cp & Gld,Materials
+FCX,Freeport-McMoRan Inc.,Materials
 FDX,FedEx Corporation,Industrials
 FE,FirstEnergy Corp,Utilities
 FFIV,F5 Networks,Information Technology
