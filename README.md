@@ -9,6 +9,10 @@ git clone https://gitlab.com/jpm/market-models.git
 ```
 git clone git@gitlab.com:jpm/market-models.git
 ```
+### Gitlab Source
+```
+https://gitlab.com/jpm/market-models
+```
 ### Github Mirror
 ```
 https://github.com/jpm6/market-models
