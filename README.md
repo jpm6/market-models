@@ -1,19 +1,19 @@
-# 4133 Project
-Optimizing an SVM to classify attributes of S&P 500 securities.
+# Machine Learning and Regression Models for Securities Markets 
+Project created for ISYE 4133 with the goal of using SVM Convex Optimization to classify attributes of S&P 500 securities.
 
-### HTTPS Clone
+#### HTTPS Clone
 ```
 git clone https://gitlab.com/jpm/market-models.git
 ```
-### SSH Clone
+#### SSH Clone
 ```
 git clone git@gitlab.com:jpm/market-models.git
 ```
-### Gitlab Source
+#### Gitlab Source
 ```
 https://gitlab.com/jpm/market-models
 ```
-### Github Mirror
+#### Github Mirror
 ```
 https://github.com/jpm6/market-models
 ```
