@@ -3,11 +3,15 @@ Optimizing an SVM to classify attributes of S&P 500 securities.
 
 ### HTTPS Clone
 ```
-git clone https://gitlab.com/jpm/4133_Project.git
+git clone https://gitlab.com/jpm/market-models.git
 ```
 ### SSH Clone
 ```
-git clone git@gitlab.com:jpm/4133_Project.git
+git clone git@gitlab.com:jpm/market-models.git
+```
+### Github Mirror
+```
+https://github.com/jpm6/market-models
 ```
 
 ## Requirements
