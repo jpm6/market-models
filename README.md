@@ -1,5 +1,5 @@
 # S&P500 ML & Regression Models 
-Project created for ISYE 4133 with the goal of using SVM Convex Optimization to classify attributes of S&P 500 securities.
+Project created with the goal of using SVM Convex Optimization to classify attributes of S&P 500 securities.
 
 #### HTTPS Clone
 ```
