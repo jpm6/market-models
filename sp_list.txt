@@ -78,6 +78,7 @@ CAH,Cardinal Health Inc.,Health Care
 CAT,Caterpillar Inc.,Industrials
 CB,Chubb Limited,Financials
 CBG,CBRE Group,Real Estate
+CBOE,CBOE Holdings,Financials
 CBS,CBS Corp.,Consumer Discretionary
 CCI,Crown Castle International Corp.,Real Estate
 CCL,Carnival Corp.,Consumer Discretionary
@@ -129,7 +130,7 @@ DFS,Discover Financial Services,Financials
 DG,Dollar General,Consumer Discretionary
 DGX,Quest Diagnostics,Health Care
 DHI,D. R. Horton,Consumer Discretionary
-DHR,Danaher Corp.,Industrials
+DHR,Danaher Corp.,Health Care
 DIS,The Walt Disney Company,Consumer Discretionary
 DISCA,Discovery Communications-A,Consumer Discretionary
 DISCK,Discovery Communications-C,Consumer Discretionary
@@ -154,7 +155,6 @@ EIX,Edison Int'l,Utilities
 EL,Estee Lauder Cos.,Consumer Staples
 EMN,Eastman Chemical,Materials
 EMR,Emerson Electric Company,Industrials
-ENDP,Endo International,Health Care
 EOG,EOG Resources,Energy
 EQIX,Equinix,Real Estate
 EQR,Equity Residential,Real Estate
@@ -165,7 +165,7 @@ ESS,"Essex Property Trust, Inc.",Real Estate
 ETFC,E*Trade,Financials
 ETN,Eaton Corporation,Industrials
 ETR,Entergy Corp.,Utilities
-EVHC,Envision Healthcare Corp,Health Care
+EVHC,Envision Healthcare,Health Care
 EW,Edwards Lifesciences,Health Care
 EXC,Exelon Corp.,Utilities
 EXPD,Expeditors Int'l,Industrials
@@ -239,6 +239,7 @@ ICE,Intercontinental Exchange,Financials
 IDXX,IDEXX Laboratories,Health Care
 IFF,Intl Flavors & Fragrances,Materials
 ILMN,Illumina Inc,Health Care
+INCY,Incyte,Health Care
 INTC,Intel Corp.,Information Technology
 INTU,Intuit Inc.,Information Technology
 IP,International Paper,Materials
@@ -270,7 +271,7 @@ KSS,Kohl's Corp.,Consumer Discretionary
 KSU,Kansas City Southern,Industrials
 L,Loews Corp.,Financials
 LB,L Brands Inc.,Consumer Discretionary
-LEG,Leggett & Platt,Industrials
+LEG,Leggett & Platt,Consumer Discretionary
 LEN,Lennar Corp.,Consumer Discretionary
 LH,Laboratory Corp. of America Holding,Health Care
 LKQ,LKQ Corporation,Consumer Discretionary
@@ -351,7 +352,6 @@ ORLY,O'Reilly Automotive,Consumer Discretionary
 OXY,Occidental Petroleum,Energy
 PAYX,Paychex Inc.,Information Technology
 PBCT,People's United Financial,Financials
-PBI,Pitney-Bowes,Industrials
 PCAR,PACCAR Inc.,Industrials
 PCG,PG&E Corp.,Utilities
 PCLN,Priceline.com Inc,Consumer Discretionary
@@ -386,6 +386,7 @@ QRVO,Qorvo,Information Technology
 R,Ryder System,Industrials
 RAI,Reynolds American Inc.,Consumer Staples
 RCL,Royal Caribbean Cruises Ltd,Consumer Discretionary
+REG,Regency Centers Corporation,Real Estate
 REGN,Regeneron,Health Care
 RF,Regions Financial Corp.,Financials
 RHI,Robert Half International,Industrials
@@ -401,7 +402,6 @@ RTN,Raytheon Co.,Industrials
 SBUX,Starbucks Corp.,Consumer Discretionary
 SCG,SCANA Corp,Utilities
 SCHW,Charles Schwab Corporation,Financials
-SE,Spectra Energy Corp.,Energy
 SEE,Sealed Air,Materials
 SHW,Sherwin-Williams,Materials
 SIG,Signet Jewelers,Consumer Discretionary
