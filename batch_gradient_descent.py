@@ -3,12 +3,12 @@ import numpy as np
 
 norm = np.linalg.norm
 
-# Define Set
-r = np.vectorize(lambda i: random() * 2 - 1)
-sample = lambda: r(range(d))
-
-# Diameter - ||x1 - x2|| <= D
+# Diameter: max ||x1 - x2|| for x1,x2 in X
 D = 2
+
+# Define Set
+r = np.vectorize(lambda i: random() * D - D/2)
+sample = lambda: r(range(d))
 
 # Instance Dimensions
 d = 5
@@ -29,22 +29,22 @@ h = .00000001
 g = lambda x: (a(x + h) - a(x - h)) / (2 * h)
 
 # Iterations
-k = 10
+k = 20
 
 # Lipschitz Constant
 L = 2 * (norm(b,1) + D * norm(A)) * norm(A)
 
-# Gamma
+# Step Size modifier Gamma
 gamma = 1 / L
 
 # Random Sample for x_0
 x = sample()
 
 for t in range(k):
-    print('Iteration:', t, '\n')
-    print("x:\t", ['%.5f' % i for i in x])
+    print('----',t)
+    print("x:\t", ['%.3f' % i for i in x])
     print("f(x):\t %.5f" % f(x))
-    print("step:\t", ['%.5f' % i for i in -gamma * g(x)], '\n')
+    print("step:\t", ['%.3f' % i for i in -gamma * g(x)], '\n')
 
     x = x - gamma * g(x)
     #s = sample()
