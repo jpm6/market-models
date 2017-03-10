@@ -6,12 +6,13 @@ la = np.linalg
 Objective Function => minimize ||Ax + b||^2
 '''
 
-# Instance Dimensions
-d = 5
+# Dimensions
+m = 20
+n = 20
 
-# Generate Random A Matrix and B Vector
-A = np.random.randint(-10, 10, d * d).reshape(d,d)
-b = np.random.randint(-10, 10, d).reshape(d,1)
+# Generate Random A Matrix and b Vector
+A = np.random.randint(-10, 10, (m,n))
+b = np.random.randint(-10, 10, (m,1))
 
 # Function
 f = lambda x: np.dot(A,x) + b
@@ -26,15 +27,15 @@ L = max(la.eig(np.dot(np.transpose(A),A))[0])
 gamma = 1 / L
 
 # Start at Origin 
-x = np.zeros((d,1))
+x = np.zeros((n,1))
 
 # Iterations
 k = 100
 
 # Gradient Descent
 for t in range(k):
-    print('',t, "\t\b\b\bf(x):\t\b\b\b", la.norm(f(x)) ** 2)
-    print("\t\b\b\bx:\t\t\b\b\b", ['%.3f' % i for i in x])
-    print("\t\b\b\bstep:\t\b\b\b", ['%.3f' % i for i in -gamma * g(x)], '\n')
+    print('',t, "\t\b\b\bf(x):\t\b\b\b\b", la.norm(f(x)) ** 2)
+    print("\t\b\b\bx:\t\t\b\b\b\b", ['%.3f' % i for i in x])
+    print("\t\b\b\bstep:\t\b\b\b\b", ['%.3f' % i for i in -gamma * g(x)], '\n')
 
     x = x - gamma * g(x)
