@@ -7,12 +7,16 @@ Objective Function => minimize ||Ax + b||^2
 '''
 
 # Dimensions
-m = 20
-n = 20
+m = 10
+n = 10
 
 # Generate Random A Matrix and b Vector
 A = np.random.randint(-10, 10, (m,n))
 b = np.random.randint(-10, 10, (m,1))
+
+# Or Load Given Instances
+A = np.loadtxt(open("problems/matrix_A.csv", "rb"))
+b = np.loadtxt(open("problems/vector_b.csv", "rb")).reshape(m,1)
 
 # Function
 f = lambda x: np.dot(A,x) + b
