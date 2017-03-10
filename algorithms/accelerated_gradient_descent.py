@@ -19,9 +19,6 @@ f = lambda x: np.dot(A,x) + b
 # Gradient Function
 g = lambda x: np.dot(np.transpose(A), f(x))
 
-# Iterations
-k = 100
-
 # Lipschitz Constant (TODO: Implement Power Iteration)
 L = max(la.eig(np.dot(np.transpose(A),A))[0])
 
@@ -30,6 +27,9 @@ gamma = 1 / L
 
 # Start at Origin 
 x = np.zeros((d,1))
+
+# Iterations
+k = 100
 
 # Gradient Descent
 for t in range(k):
