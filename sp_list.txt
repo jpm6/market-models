@@ -60,7 +60,7 @@ BBY,Best Buy Co. Inc.,Consumer Discretionary
 BCR,Bard (C.R.) Inc.,Health Care
 BDX,Becton Dickinson,Health Care
 BEN,Franklin Resources,Financials
-BFB,Brown-Forman,Consumer Staples
+BFB,Brown-Forman Corp.,Consumer Staples
 BHI,Baker Hughes Inc,Energy
 BIIB,BIOGEN IDEC Inc.,Health Care
 BK,The Bank of New York Mellon Corp.,Financials
@@ -95,7 +95,7 @@ CINF,Cincinnati Financial,Financials
 CL,Colgate-Palmolive,Consumer Staples
 CLX,The Clorox Company,Consumer Staples
 CMA,Comerica Inc.,Financials
-CMCSA,Comcast A Corp,Consumer Discretionary
+CMCSA,Comcast Corp.,Consumer Discretionary
 CME,CME Group Inc.,Financials
 CMG,Chipotle Mexican Grill,Consumer Discretionary
 CMI,Cummins Inc.,Industrials
@@ -173,7 +173,7 @@ EXPE,Expedia Inc.,Consumer Discretionary
 EXR,Extra Space Storage,Real Estate
 F,Ford Motor,Consumer Discretionary
 FAST,Fastenal Co,Industrials
-FB,Facebook,Information Technology
+FB,"Facebook, Inc.",Information Technology
 FBHS,Fortune Brands Home & Security,Industrials
 FCX,Freeport-McMoRan Inc.,Materials
 FDX,FedEx Corporation,Industrials
