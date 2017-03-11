@@ -27,9 +27,6 @@ g = lambda x: 2 * np.dot(np.transpose(A), f(x))
 # Lipschitz Constant (TODO: Implement Power Iteration)
 L = max(la.eig(np.dot(np.transpose(A),A))[0])
 
-# Step Size Gamma
-gamma = 1 / L
-
 # Start at Origin 
 x = np.zeros((n,1))
 xb = x
