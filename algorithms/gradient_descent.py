@@ -22,7 +22,7 @@ b = np.loadtxt(open("problems/vector_b.csv", "rb")).reshape(m,1)
 f = lambda x: np.dot(A,x) + b
 
 # Gradient Function
-g = lambda x: np.dot(np.transpose(A), f(x))
+g = lambda x: 2 * np.dot(np.transpose(A), f(x))
 
 # Lipschitz Constant (TODO: Implement Power Iteration)
 L = max(la.eig(np.dot(np.transpose(A),A))[0])
