@@ -23,7 +23,8 @@ The project is written in Python 3.  It uses the following packages:
 
 - [requests](http://docs.python-requests.org/en/master/)
 - [bs4](https://www.crummy.com/software/BeautifulSoup/)
-- [yahoo_finance](https://pypi.python.org/pypi/yahoo-finance)
+- [yahoo_finance](https://pypi.python.org/pypi/yahoo-finance/)
+- [numpy](http://www.numpy.org/)
 
 ## Options
 `python fetch.py -h` prints:
