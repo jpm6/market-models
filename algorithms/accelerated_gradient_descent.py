@@ -5,6 +5,7 @@ la = np.linalg
 '''
 Objective Function => minimize ||Ax - b||^2
 '''
+__author__ = "James P. Moriarty"
 
 # Dimensions
 m = 10
@@ -31,8 +32,7 @@ L = max(eig_vals)
 u = min(eig_vals)
 
 # Start at Origin 
-x = np.zeros((n,1))
-xt = x
+x = xt = np.zeros((n,1))
 
 # Iterations
 k = 100
