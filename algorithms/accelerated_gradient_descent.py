@@ -3,23 +3,23 @@ import numpy as np
 la = np.linalg
 
 '''
-Objective Function => minimize ||Ax + b||^2
+Objective Function => minimize ||Ax - b||^2
 '''
 
 # Dimensions
-m = 5
-n = 5
+m = 10
+n = 10
 
 # Generate Random A Matrix and b Vector
 A = np.random.randint(-10, 10, (m,n))
 b = np.random.randint(-10, 10, (m,1))
 
 # Or Load Given Instances
-#A = np.loadtxt(open("problems/matrix_A.csv", "rb"))
-#b = np.loadtxt(open("problems/vector_b.csv", "rb")).reshape(m,1)
+A = np.loadtxt(open("problems/matrix_A.csv", "rb"))
+b = np.loadtxt(open("problems/vector_b.csv", "rb")).reshape(m,1)
 
 # Function
-f = lambda x: np.dot(A,x) + b
+f = lambda x: np.dot(A,x) - b
 
 # Gradient Function
 g = lambda x: 2 * np.dot(np.transpose(A), f(x))
@@ -35,7 +35,7 @@ x = np.zeros((n,1))
 xt = x
 
 # Iterations
-k = 10
+k = 100
 
 # Accelerated Gradient Descent
 for t in range(1,k+1):

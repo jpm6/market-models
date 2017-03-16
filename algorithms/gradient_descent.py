@@ -3,7 +3,7 @@ import numpy as np
 la = np.linalg
 
 '''
-Objective Function => minimize ||Ax + b||^2
+Objective Function => minimize ||Ax - b||^2
 '''
 
 # Dimensions
@@ -19,7 +19,7 @@ A = np.loadtxt(open("problems/matrix_A.csv", "rb"))
 b = np.loadtxt(open("problems/vector_b.csv", "rb")).reshape(m,1)
 
 # Function
-f = lambda x: np.dot(A,x) + b
+f = lambda x: np.dot(A,x) - b
 
 # Gradient Function
 g = lambda x: 2 * np.dot(np.transpose(A), f(x))
