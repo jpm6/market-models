@@ -50,7 +50,7 @@ def clean_data(d):
     pe = 'PriceEPSEstimateCurrentYear'
     pn = 'PriceEPSEstimateNextYear'
     pr = 'PERatio'
-    se = 'StockExchange'
+    #se = 'StockExchange'
     tp = 'OneyrTargetPrice'
 
     pa = ['PercentChangeFromFiftydayMovingAverage',
@@ -80,7 +80,7 @@ def clean_data(d):
     d[dy] = d[dy] if d[dy] else 0
 
     # Binary Exchanges
-    d[se] = exchanges[d[se]] 
+    #d[se] = exchanges[d[se]] 
 
     # Remove Securities with common missing data
     if not all(d[a] for a in [pb, pe, pn, en, pr]): return []

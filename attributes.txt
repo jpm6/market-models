@@ -62,3 +62,7 @@ Symbol
 YearLow
 YearHigh
 YearRange
+#
+# Qualitative Attributes
+#
+StockExchange
