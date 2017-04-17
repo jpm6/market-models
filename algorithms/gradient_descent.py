@@ -5,7 +5,6 @@ la = np.linalg
 '''
 Objective Function => minimize ||Ax - b||^2
 '''
-__author__ = "James P. Moriarty"
 
 # Dimensions
 m = 10
