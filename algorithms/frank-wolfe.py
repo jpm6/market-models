@@ -11,15 +11,14 @@ Objective Function => minimize ||Ax - b||^2
 m = 10
 n = 10
 
-# Generate Random c Matrix
-c = np.random.randint(-10, 10, n)
+# Generate Random C Matrix
+C = np.random.randint(-10, 10, n)
 
 # J = j of max |c_j| in Matrix c 
 J = lambda i: np.argmax(abs(i))
 
-y = np.array([int(i == J(c)) for i in range(n)])
-
-if c[J(c)] >= 0: y *= -1
+y = np.array([int(i == J(C)) for i in range(n)]).reshape(n,1)
+if C[J(C)] >= 0: y *= -1
 
 # Load Given Instances
 A = np.loadtxt(open("problems/matrix_A.csv", "rb"))
@@ -55,7 +54,6 @@ for t in range(1,k+1):
 
     c = g(x)
     s = np.array([int(i == J(c)) for i in range(n)]).reshape(n,1)
-    
     if c[J(c)] >= 0: s *= -1
 
     print('',t, "\t\b\b\bf(x):\t\b\b\b\b", la.norm(f(x)) ** 2)
