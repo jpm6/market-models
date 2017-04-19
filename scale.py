@@ -5,7 +5,7 @@ from sklearn    import preprocessing
 import numpy as np
 
 def scale(dataset):
-    with open(dataset) as csv_in, open(dataset[:5] + 'N-' + dataset[5:], 'w') as csv_out:
+    with open(dataset) as csv_in, open(dataset[:5] + 's-' + dataset[5:], 'w') as csv_out:
 
         r = reader(csv_in)
         w = writer(csv_out)
