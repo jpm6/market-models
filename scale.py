@@ -1,30 +1,49 @@
 from argparse   import ArgumentParser
 from csv        import reader, writer
-from sklearn    import preprocessing
+from sklearn    import preprocessing    as p
 
 import numpy as np
 
-def scale(dataset):
-    with open(dataset) as csv_in, open(dataset[:5] + 's-' + dataset[5:], 'w') as csv_out:
+def scale(dataset, binary):
 
-        r = reader(csv_in)
+    name = 'binary-' if binary else 'continuous-'
+
+    with open(dataset) as csv_in, open(dataset[:5] + name + dataset[5:], 'w') as csv_out:
+
         w = writer(csv_out)
-        
-        # Header
-        w.writerow(next(r))
 
-        d = np.array(list(r))
+        categorize = np.vectorize(lambda i: 1 if i > 0 else -1)
 
-        # Separate Identifier Attributes
+        d = np.array(list(reader(csv_in)))
+
+        # Separate Header
+        header, d = d[0:1,:], d[1:,:]
+
+        # Separate Identifiers
         ids, d = d[:,:2], d[:,2:].astype("float")
         
-        c = (ids, preprocessing.scale(d[:,:18]), d[:,18:28], preprocessing.scale(d[:,28:]))
+        labels = categorize(d[:,13]) if binary else d[:,13:14]
 
-        for row in np.concatenate(c, axis=1): w.writerow(row)
+        # Recombine Scaled Data
+        d = np.concatenate((ids, 
+                        p.scale(d[:,:13]), 
+                        labels.reshape(labels.size, 1), 
+                        p.scale(d[:,14:18]),
+                        d[:,18:28],
+                        p.scale(d[:,28:])), axis=1)
+                
+        # Restore Header
+        d = np.concatenate((header, d))
+
+        for row in d: writer(csv_out).writerow(row)
+
+        return d
             
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('dataset', type=str, help='CSV Dataset to be Normalized')
+    parser.add_argument('-b', '--bin', type=str, help='Scale Dataset with Binary Labels')
+    parser.add_argument('-c', '--con', type=str, help='Scale Dataset with Continuous Labels')
     args = parser.parse_args()
 
-    if args.dataset: print(args.dataset); scale(args.dataset)
+    if args.bin: print(args.bin); scale(args.bin, True)
+    if args.con: print(args.con); scale(args.con, False)
