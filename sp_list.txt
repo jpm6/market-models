@@ -75,7 +75,7 @@ BWA,BorgWarner,Consumer Discretionary
 BXP,Boston Properties,Real Estate
 C,Citigroup Inc.,Financials
 CA,"CA, Inc.",Information Technology
-CAG,ConAgra Foods Inc.,Consumer Staples
+CAG,Conagra Brands,Consumer Staples
 CAH,Cardinal Health Inc.,Health Care
 CAT,Caterpillar Inc.,Industrials
 CB,Chubb Limited,Financials
