@@ -115,6 +115,9 @@ def clean_data(d, sector):
     if sector:
         for s in sectors.keys(): d['Sector-' + s] = sectors[s]
 
+    # Energy Arbitrarily Chosen as Reference Category
+    d.pop('Sector-Energy')
+
     return sorted(list(d.items()))
 
 
