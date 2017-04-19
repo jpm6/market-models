@@ -13,14 +13,15 @@ def scale(dataset):
         # Header
         w.writerow(next(r))
 
-        data = np.array(list(r))
+        d = np.array(list(r))
 
         # Separate Identifier Attributes
-        ids = data[:,:2]
-        data = np.asmatrix(data[:,2:]).astype("float")
+        ids, d = d[:,:2], d[:,2:].astype("float")
+        
+        c = (ids, preprocessing.scale(d[:,:18]), d[:,18:28], preprocessing.scale(d[:,28:]))
 
-        for row in np.concatenate((ids, preprocessing.scale(data)), axis=1): w.writerow(row)
-
+        for row in np.concatenate(c, axis=1): w.writerow(row)
+            
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('dataset', type=str, help='CSV Dataset to be Normalized')
