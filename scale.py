@@ -22,7 +22,7 @@ def scale(dataset, binary):
         # Separate Identifiers
         ids, d = d[:,:2], d[:,2:].astype("float")
         
-        labels = categorize(d[:,13]) if binary else d[:,13:14]
+        labels = categorize(d[:,13]) if binary else p.scale(d[:,13:14])
 
         # Recombine Scaled Data
         d = np.concatenate((ids, 
