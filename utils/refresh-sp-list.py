@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
             sp_symbols.append((symbol, name, sector))
 
-    with open('sp_list.txt', 'w') as csv_file:
+    with open('sp-list.txt', 'w') as csv_file:
 
         w = writer(csv_file)
 
