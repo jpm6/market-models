@@ -28,9 +28,9 @@ def scale(dataset, binary):
         d = np.concatenate((ids, 
                         p.scale(d[:,:13]), 
                         labels.reshape(labels.size, 1), 
-                        p.scale(d[:,14:18]),
-                        d[:,18:28],
-                        p.scale(d[:,28:])), axis=1)
+                        # p.scale(d[:,14:18]),
+                        # d[:,18:28],
+                        p.scale(d[:,14:])), axis=1)
                 
         # Restore Header
         d = np.concatenate((header, d))
