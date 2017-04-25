@@ -8,7 +8,7 @@ def scale(dataset, binary):
 
     name = 'binary-' if binary else 'continuous-'
 
-    with open(dataset) as csv_in, open(dataset[:5] + name + dataset[5:], 'w') as csv_out:
+    with open(dataset) as csv_in, open(dataset[:5] + 'scaled/' + name + dataset[5:], 'w') as csv_out:
 
         w = writer(csv_out)
 

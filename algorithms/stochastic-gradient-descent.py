@@ -34,7 +34,7 @@ gamma = 1 / L
 x = np.zeros((n,1))
 
 # Iterations
-k = 100
+k = 10
 
 # Gradient Descent
 for t in range(k):
