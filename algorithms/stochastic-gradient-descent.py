@@ -1,45 +1,59 @@
-import numpy as np
+import numpy  as np
+import pandas as pd
 
 la = np.linalg
 
 '''
-Objective Function => minimize ||Ax - b||^2
+Objective Function => minimize vi |wT*ui + b||^2
 '''
 
-# Dimensions
-m = 10
-n = 10
+trd = '../data/split/train-data.csv'
+trl = '../data/split/train-labels.csv'
 
-# Generate Random A Matrix and b Vector
-A = np.random.randint(-10, 10, (m,n))
-b = np.random.randint(-10, 10, (m,1))
+d = np.asarray(pd.read_csv(trd))
+l = np.asarray(pd.read_csv(trl))
 
-# Or Load Given Instances
-A = np.loadtxt(open("problems/matrix_A.csv", "rb"))
-b = np.loadtxt(open("problems/vector_b.csv", "rb")).reshape(m,1)
+# Gram Matrix
+m, n = d.shape
+K = np.zeros((m,m))
 
-# Function
-f = lambda x: np.dot(A,x) - b
-
-# Gradient Function
-g = lambda x: 2 * np.dot(np.transpose(A), f(x))
-
+for i, x_i in enumerate(d):
+    for j, x_j in enumerate(d):
+        K[i, j] = np.inner(x_i, x_j)
 # Lipschitz Constant (TODO: Implement Power Iteration)
-L = max(la.eig(2 * np.dot(np.transpose(A),A))[0])
+# L = max(la.eig(2 * np.dot(np.transpose(A),A))[0])
 
 # Step Size Gamma
-gamma = 1 / L
+# gamma = 1 / L
 
 # Start at Origin 
-x = np.zeros((n,1))
+x = np.ones(n)
 
-# Iterations
-k = 10
+# Stochastic Gradient Descent
+for u,v in list(zip(d,l))[:10]:
 
-# Gradient Descent
-for t in range(k):
-    print('',t, "\t\b\b\bf(x):\t\b\b\b\b", la.norm(f(x)) ** 2)
+ #   G = 
+
+    '''
     print("\t\b\b\bx:\t\t\b\b\b\b", ['%.3f' % i for i in x])
+    print("\t\b\b\bu:\t\t\b\b\b\b", ['%.3f' % i for i in u])
+    print('',t, "\t\b\b\bf(x):\t\b\b\b\b", la.norm(f(x)) ** 2)
     print("\t\b\b\bstep:\t\b\b\b\b", ['%.3f' % i for i in -gamma * g(x)], '\n')
+    '''
 
-    x = x - gamma * g(x)
+    print(v[0], np.dot(x, u))
+    h = v[0] * np.dot(x, u)
+    print(h)
+    #x = x - gamma * g(x)
+    x = x - 0.001 * h * u
+
+
+ted = '../data/split/test-data.csv'
+tel = '../data/split/test-labels.csv'
+
+d = np.asarray(pd.read_csv(ted))
+l = np.asarray(pd.read_csv(tel))
+
+for u,v in list(zip(d,l)):
+    pass
+    
