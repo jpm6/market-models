@@ -15,8 +15,7 @@ def crossval(dataset):
     path  = dataset[:dataset.find('data')] + 'data/split/'
 
     for i in list(zip(['train-data', 'test-data', 'train-labels', 'test-labels'], s)):
-        print(path + i[0])
-        np.savetxt(path + i[0], i[1])    
+        np.savetxt(path + i[0] + '.csv', i[1], delimiter=',')    
     
     return s
 
