@@ -91,7 +91,7 @@ def clean_data(d, sector):
     dr = d['DaysRange'].split('-')
     d['DaysRange'] = (float(dr[1]) - float(dr[0])) / float(d[pc])
 
-    d['EPSYearGrowthEstimate'] = (float(d[en]) / float(d[ec])) - 1 if d[en] else 0
+    d['EPSYearGrowthEstimate'] = (float(d[en]) / float(d['EPS'])) - 1 if d[en] else 0
 
     d['OneyrTargetChange']          = float(d[tp]) / float(d[pc]) - 1 if d[tp] else 0
     d['PercentChangeAfterHours']    = float(d[op]) / float(d[pc]) - 1 if d[op] else 0
@@ -125,7 +125,7 @@ def clean_data(d, sector):
 Writes the cleaned current financial attributes of all SP 500 companies to {TODAY}.csv
 '''
 def write_current_data():
-    with open('data/' + strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
+    with open('../data/' + strftime('%m-%d-%Y') + '.csv', 'w') as csv_file:
 
         form = lambda symdata, sector: list(zip(*clean_data(symdata, sector)))
 
