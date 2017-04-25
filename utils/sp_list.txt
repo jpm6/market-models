@@ -2,7 +2,7 @@ A,Agilent Technologies Inc,Health Care
 AAL,American Airlines Group,Industrials
 AAP,Advance Auto Parts,Consumer Discretionary
 AAPL,Apple Inc.,Information Technology
-ABBV,AbbVie,Health Care
+ABBV,AbbVie Inc.,Health Care
 ABC,AmerisourceBergen Corp,Health Care
 ABT,Abbott Laboratories,Health Care
 ACN,Accenture plc,Information Technology
@@ -110,7 +110,7 @@ COH,Coach Inc.,Consumer Discretionary
 COL,Rockwell Collins,Industrials
 COO,The Cooper Companies,Health Care
 COP,ConocoPhillips,Energy
-COST,Costco Co.,Consumer Staples
+COST,Costco Wholesale Corp.,Consumer Staples
 COTY,"Coty, Inc",Consumer Staples
 CPB,Campbell Soup,Consumer Staples
 CRM,Salesforce.com,Information Technology
@@ -206,7 +206,7 @@ GOOG,Alphabet Inc Class C,Information Technology
 GOOGL,Alphabet Inc Class A,Information Technology
 GPC,Genuine Parts,Consumer Discretionary
 GPN,Global Payments Inc,Information Technology
-GPS,Gap (The),Consumer Discretionary
+GPS,Gap Inc.,Consumer Discretionary
 GRMN,Garmin Ltd.,Consumer Discretionary
 GS,Goldman Sachs Group,Financials
 GT,Goodyear Tire & Rubber,Consumer Discretionary
